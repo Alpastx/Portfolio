@@ -1,0 +1,1296 @@
+export type Chip = {
+  name: string;
+  color: string;
+};
+
+export type ToolGroup = "languages" | "frontend" | "backend" | "databases" | "security" | "devops" | "ai";
+
+export type ToolItem = {
+  name: string;
+  icon: string;
+  group: ToolGroup;
+};
+
+export type Segment =
+  | { kind: "text"; text: string }
+  | { kind: "chip"; name: string; color: string }
+  | { kind: "mark"; text: string; href?: string };
+
+export type Experience = {
+  org: string;
+  href: string;
+  role: string;
+  dates: string;
+  place: string;
+  mark: string;
+  logo?: string;
+  bullets: string[];
+  tags: Chip[];
+};
+
+export type Education = {
+  school: string;
+  href: string;
+  degree: string;
+  dates: string;
+  mark: string;
+  logo?: string;
+  invertLogo?: boolean;
+  wideLogo?: boolean;
+};
+
+export type Project = {
+  title: string;
+  date: string;
+  status: string;
+  summary: string;
+  tags: Chip[];
+  website?: string;
+  github?: string;
+  cover: { from: string; to: string; label: string; image?: string };
+};
+
+export type ResearchItem = {
+  title: string;
+  href?: string;
+  detail: string;
+  note?: string;
+  dates: string;
+  rating?: string;
+  score?: string;
+  mark: string;
+  logo?: string;
+  stars?: number;
+};
+
+export type ResearchGroup = {
+  title: string;
+  layout?: "list" | "cards";
+  items: ResearchItem[];
+  entries?: ResearchItem[];
+};
+
+export type FieldItem = {
+  title: string;
+  date: string;
+  place: string;
+  result: string;
+  tags: Chip[];
+  cover: { from: string; to: string; label: string };
+};
+
+export type CollageItem = {
+  kind: "photo" | "card" | "note" | "sticker";
+  src: string;
+  alt: string;
+  caption?: string;
+  title?: string;
+  lines?: string[];
+  body?: string;
+  mark?: string;
+  cutout?: boolean;
+  frame?: "light" | "dark";
+  darken?: boolean;
+  x: number;
+  y: number;
+  width: number;
+  rotate: number;
+  z: number;
+  ratio: number;
+};
+
+export type Note = {
+  slug: string;
+  title: string;
+  date: string;
+  isoDate: string;
+  excerpt: string;
+  body: string[];
+};
+
+export const site = {
+  loader: {
+    line: "Opening the record",
+  },
+  profile: {
+    name: "Alpesh Bhagwatkar",
+    aka: "AKA Alpy / Alpastx",
+    initials: "AB",
+    photo: "/profile.webp",
+    titles: ["Vulnerability researcher", "COO at Cyber Unbound", "CTF player"],
+    location: "Mumbai, IN",
+    email: "alpeshbhagwatkar45@gmail.com",
+    github: "https://github.com/Alpastx",
+    linkedin: "https://www.linkedin.com/in/alpesh-bhagwatkar",
+    description:
+      "Alpesh Bhagwatkar is a vulnerability researcher and COO at Cyber Unbound, based in Mumbai.",
+  },
+  about: [
+    [
+      { kind: "text", text: "I'm a 21 yo SWE who happens to like security (" },
+      { kind: "mark", text: "vulnerability research", href: "/research" },
+      { kind: "text", text: ") and " },
+      { kind: "mark", text: "AI" },
+      { kind: "text", text: ". Curious about how things work at a low level, and about OSS security and contributions. I love solving problems and building products around them, the kind VCs and angel investors love 😛." },
+    ],
+    [
+      { kind: "text", text: "Normally I'm handling operations at " },
+      { kind: "mark", text: "Cyber Unbound", href: "https://www.cyberunbound.com/" },
+      { kind: "text", text: ": internal pipeline tools, tighter workflows, or a security conference for fun. Outside of that I like learning what sits under the high-level larp, on the architecture." },
+    ],
+    [
+      { kind: "text", text: "I'm up for new opportunities and collabs. Got a research idea? Hit me up, bro. " },
+      { kind: "mark", text: "Resume", href: "/resume" },
+      { kind: "text", text: " is the button below, or on my socials." },
+    ],
+    [
+      { kind: "text", text: "If you scroll far enough and like the work, I think we'd vibe. I nerd out easily on anything tech let it be security, AI, " },
+      { kind: "mark", text: "CNCF", href: "https://www.cncf.io/" },
+      { kind: "text", text: " projects, or just about anything else." },
+    ],
+    [
+      { kind: "text", text: "I'm also a co-organiser at " },
+      { kind: "mark", text: "Our Tech Community" },
+      { kind: "text", text: "'s weekly catchup and that's where I nerd out every Saturday, 10:30 PM IST." },
+    ],
+  ] satisfies Segment[][],
+  story: {
+    title: "Life so far",
+    seeAllLabel: "See all",
+  },
+  experience: [
+    {
+      org: "Cyber Unbound",
+      href: "https://www.cyberunbound.com/",
+      role: "Chief Operations Officer",
+      dates: "Sep 2025 — Present",
+      place: "Mumbai · Hybrid",
+      mark: "CU",
+      logo: "/cyberunbound_logo_circle(1).jpeg",
+      bullets: [
+        "ballin through it for now xD"
+      ],
+      tags: [
+        { name: "Operations", color: "#89b4fa" },
+        { name: "Hiring", color: "#a1a1a1" },
+        { name: "CTF", color: "#f9e2af" },
+      ],
+    },
+    {
+      org: "Secure Cyber Future",
+      href: "",
+      role: "Research intern",
+      dates: "Jun 2023 — Jul 2023",
+      place: "Remote · Mumbai",
+      mark: "SF",
+      logo: "/scf.png",
+      bullets: [
+        "Assessed multiple web app's (black and white box) and network infrastructure for vulnerabilities.",
+        "I researched new cybersecurity threats and vulnerabilities and the techniques that attackers use to exploit them.",
+        "Used Burp Suite, Nmap, and Linux security tools during the tests",
+        "Developed custom python based security tools for the tests and POC's",
+        "Wrote technical reports that recommended how to correct each issue on code level",
+        "I worked with developers and architects to fix security vulnerabilities and bugs.",
+      ],
+      tags: [
+        { name: "Penetration Testing", color: "#f38ba8" },
+        { name: "Web Application Security", color: "#89b4fa" },
+        { name: "VAPT", color: "#f9e2af" },
+        { name: "Security Research", color: "#cba6f7" },
+        { name: "Network Security", color: "#94e2d5" },
+        { name: "Web Security", color: "#a6e3a1" },
+        { name: "API Security", color: "#89dceb" },
+      ],
+    },
+  ] satisfies Experience[],
+  educationTitle: "Education",
+  education: [
+    {
+      school: "Smt. Indira Gandhi College of Engineering",
+      href: "",
+      degree: "BTech, CSE-AIML",
+      dates: "2024 — 2027",
+      mark: "IG",
+      logo: "/sigce.png",
+    },
+    {
+      school: "Vidyalankar Polytechnic",
+      href: "",
+      degree: "Diploma, Computer Engineering",
+      dates: "2021 — 2024",
+      mark: "VP",
+      logo: "/vpp.png",
+    },
+  ] satisfies Education[],
+  researchTitle: "Research",
+  research: [
+    {
+      title: "",
+      items: [
+        {
+          title: "CVE-2026-89036",
+          href: "https://nvd.nist.gov/vuln/detail/CVE-2026-89036",
+          detail: "Appwrite",
+          note: "Authenticated write access could reach the builds worker. Fixed in Appwrite 2.0.0.",
+          dates: "Sep 2026",
+          rating: "High",
+          score: "8.8",
+          mark: "AW",
+          logo: "/logos/appwrite.webp",
+        },
+        {
+          title: "CVE-2026-86089",
+          href: "https://nvd.nist.gov/vuln/detail/CVE-2026-86089",
+          detail: "Apache NiFi",
+          note: "An authenticated user could see or move process groups beyond their rights. Fixed in Apache NiFi 2.12.0.",
+          dates: "Sep 2026",
+          rating: "Low",
+          score: "2.3",
+          mark: "NF",
+          logo: "/logos/nifi.webp",
+        },
+        {
+          title: "CVE-2026-102876",
+          href: "https://www.cve.org/CVERecord?id=CVE-2026-102876",
+          detail: "SurrealDB",
+          note: "An authenticated user could read and change records in another tenant. Fixed in SurrealDB 3.3.0.",
+          dates: "Sep 2026",
+          rating: "High",
+          score: "8.1",
+          mark: "SD",
+          logo: "/logos/surrealdb.webp",
+        },
+        {
+          title: "CVE-2026-94609",
+          href: "https://www.cve.org/CVERecord?id=CVE-2026-94609",
+          detail: "authentik",
+          note: "An account with delegated management rights could grant privileges it did not hold. Fixed in authentik 2026.2.7, 2026.5.7, and 2026.8.2.",
+          dates: "Sep 2026",
+          rating: "High",
+          score: "8.8",
+          mark: "AK",
+          logo: "/logos/authentik.webp",
+        },
+      ],
+    },
+    {
+      title: "Advisories",
+      layout: "cards",
+      items: [
+        {
+          title: "SnapOtter",
+          href: "https://github.com/snapotter-hq/SnapOtter/security/advisories",
+          detail: "Two advisories",
+          note: "They cover an access check on job cancel and path handling in file storage.",
+          dates: "Jul 2026",
+          rating: "High",
+          score: "7.6",
+          mark: "SO",
+          logo: "/logos/snapotter.webp",
+          stars: 2769,
+        },
+        {
+          title: "AzuraCast",
+          href: "https://github.com/AzuraCast/AzuraCast/security/advisories",
+          detail: "Three advisories",
+          note: "They cover command handling, access control, and a remote playlist fetch.",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "8.8",
+          mark: "AZ",
+          logo: "/logos/azuracast.webp",
+          stars: 4053,
+        },
+        {
+          title: "Lychee",
+          href: "https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-qw94-w2w6-39rj",
+          detail: "One advisory",
+          note: "It covers path handling in a zip upload.",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.1",
+          mark: "LY",
+          logo: "/logos/lychee.webp",
+          stars: 4307,
+        },
+        {
+          title: "Wekan",
+          href: "https://github.com/wekan/wekan/security/advisories",
+          detail: "Four advisories",
+          note: "They cover file access and board permissions.",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.7",
+          mark: "WK",
+          logo: "/logos/wekan.webp",
+          stars: 21099,
+        },
+        {
+          title: "OpenEMR",
+          href: "https://github.com/openemr/openemr/security/advisories",
+          detail: "Two advisories",
+          note: "They cover a document preview and portal access.",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.6",
+          mark: "OE",
+          logo: "/logos/openemr.webp",
+          stars: 5488,
+        },
+        {
+          title: "Planka",
+          href: "https://github.com/plankanban/planka/security/advisories/GHSA-8jqr-gh78-qjp7",
+          detail: "One advisory",
+          note: "It covers path handling on static file routes.",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.5",
+          mark: "PL",
+          logo: "/logos/planka.webp",
+          stars: 12599,
+        },
+        {
+          title: "Scoold",
+          href: "https://github.com/Erudika/scoold/security/advisories",
+          detail: "Nine advisories",
+          note: "They cover access control on users, posts, and reports.",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.1",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Penpot",
+          href: "https://github.com/penpot/penpot/security/advisories/GHSA-4p97-v4wg-jxfx",
+          detail: "One advisory",
+          note: "It covers access control on share-link comments.",
+          dates: "Sep 2026",
+          rating: "Medium",
+          score: "5.4",
+          mark: "PP",
+          logo: "/logos/penpot.webp",
+          stars: 60577,
+        },
+      ],
+      entries: [
+        {
+          title: "Access control on share-link comments",
+          href: "https://github.com/penpot/penpot/security/advisories/GHSA-4p97-v4wg-jxfx",
+          detail: "Penpot",
+          dates: "Sep 2026",
+          rating: "Medium",
+          score: "5.4",
+          mark: "PP",
+          logo: "/logos/penpot.webp",
+          stars: 60577,
+        },
+        {
+          title: "File access through an avatar update",
+          href: "https://github.com/wekan/wekan/security/advisories/GHSA-4mxf-m8pq-xc9p",
+          detail: "Wekan",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.7",
+          mark: "WK",
+          logo: "/logos/wekan.webp",
+          stars: 21099,
+        },
+        {
+          title: "Comment deletion across boards",
+          href: "https://github.com/wekan/wekan/security/advisories/GHSA-pqr4-rxgp-hv2m",
+          detail: "Wekan",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.5",
+          mark: "WK",
+          logo: "/logos/wekan.webp",
+          stars: 21099,
+        },
+        {
+          title: "Private cards shown across boards",
+          href: "https://github.com/wekan/wekan/security/advisories/GHSA-jvv9-498p-hxrg",
+          detail: "Wekan",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.5",
+          mark: "WK",
+          logo: "/logos/wekan.webp",
+          stars: 21099,
+        },
+        {
+          title: "Inactive shares still publish a board",
+          href: "https://github.com/wekan/wekan/security/advisories/GHSA-gwc4-fw7p-gw58",
+          detail: "Wekan",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.5",
+          mark: "WK",
+          logo: "/logos/wekan.webp",
+          stars: 21099,
+        },
+        {
+          title: "Path handling on static file routes",
+          href: "https://github.com/plankanban/planka/security/advisories/GHSA-8jqr-gh78-qjp7",
+          detail: "Planka",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.5",
+          mark: "PL",
+          logo: "/logos/planka.webp",
+          stars: 12599,
+        },
+        {
+          title: "Document preview",
+          href: "https://github.com/openemr/openemr/security/advisories/GHSA-rghp-vwvf-c2r9",
+          detail: "OpenEMR",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.6",
+          mark: "OE",
+          logo: "/logos/openemr.webp",
+          stars: 5488,
+        },
+        {
+          title: "Portal access",
+          href: "https://github.com/openemr/openemr/security/advisories/GHSA-x8rm-m66w-qhh5",
+          detail: "OpenEMR",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.1",
+          mark: "OE",
+          logo: "/logos/openemr.webp",
+          stars: 5488,
+        },
+        {
+          title: "Path handling in a zip upload",
+          href: "https://github.com/LycheeOrg/Lychee/security/advisories/GHSA-qw94-w2w6-39rj",
+          detail: "Lychee",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.1",
+          mark: "LY",
+          logo: "/logos/lychee.webp",
+          stars: 4307,
+        },
+        {
+          title: "Command handling in live recording",
+          href: "https://github.com/AzuraCast/AzuraCast/security/advisories/GHSA-73rf-jp3g-8rcf",
+          detail: "AzuraCast",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "8.8",
+          mark: "AZ",
+          logo: "/logos/azuracast.webp",
+          stars: 4053,
+        },
+        {
+          title: "Access control on stream credentials",
+          href: "https://github.com/AzuraCast/AzuraCast/security/advisories/GHSA-qwh6-x463-ccf4",
+          detail: "AzuraCast",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.6",
+          mark: "AZ",
+          logo: "/logos/azuracast.webp",
+          stars: 4053,
+        },
+        {
+          title: "Remote playlist fetch",
+          href: "https://github.com/AzuraCast/AzuraCast/security/advisories/GHSA-rrjx-wrhf-8v47",
+          detail: "AzuraCast",
+          dates: "Aug 2026",
+          rating: "High",
+          mark: "AZ",
+          logo: "/logos/azuracast.webp",
+          stars: 4053,
+        },
+        {
+          title: "Path handling in file storage",
+          href: "https://github.com/snapotter-hq/SnapOtter/security/advisories/GHSA-55w2-8cqf-w969",
+          detail: "SnapOtter",
+          dates: "Jul 2026",
+          rating: "High",
+          score: "7.6",
+          mark: "SO",
+          logo: "/logos/snapotter.webp",
+          stars: 2769,
+        },
+        {
+          title: "Missing ownership check on job cancel",
+          href: "https://github.com/snapotter-hq/SnapOtter/security/advisories/GHSA-wqxf-gj2p-689x",
+          detail: "SnapOtter",
+          dates: "Jul 2026",
+          rating: "Medium",
+          score: "4.3",
+          mark: "SO",
+          logo: "/logos/snapotter.webp",
+          stars: 2769,
+        },
+        {
+          title: "Webhook changes without admin rights",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-8wf9-2rrg-h8v4",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "High",
+          score: "7.1",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Another user's account details",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-789c-9rv8-q4jj",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.8",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Joining a space without admin rights",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-jffq-w8w6-5mgj",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.8",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Approving a report without a moderator check",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-fr2r-8xg7-4c8h",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "6.5",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Unapproved post bodies",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-2c7q-vr7m-jhfv",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "5.9",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "A private comment on a public question",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-c645-v994-fxwj",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "5.9",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Profile questions visible as the owner",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-2mfq-wj5p-9jjv",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "5.3",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Private posts visible",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-9c79-68x6-8795",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "5.3",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+        {
+          title: "Comments visible past an access check",
+          href: "https://github.com/Erudika/scoold/security/advisories/GHSA-wm78-r73f-mw2v",
+          detail: "Scoold",
+          dates: "Aug 2026",
+          rating: "Medium",
+          score: "5.3",
+          mark: "SC",
+          logo: "/logos/scoold.webp",
+          stars: 922,
+        },
+      ],
+    },
+  ] satisfies ResearchGroup[],
+  tools: {
+    title: "My Arsenal",
+    items: [
+      { name: "Python", icon: "/tools/python.svg", group: "languages" },
+      { name: "Go", icon: "/tools/go.svg", group: "languages" },
+      { name: "TypeScript", icon: "/tools/typescript.svg", group: "languages" },
+      { name: "React", icon: "/tools/react.svg", group: "frontend" },
+      { name: "Next.js", icon: "/tools/nextjs.svg", group: "frontend" },
+      { name: "Tailwind", icon: "/tools/tailwind.svg", group: "frontend" },
+      { name: "GSAP", icon: "/tools/gsap.svg", group: "frontend" },
+      { name: "Framer Motion", icon: "/tools/framer.svg", group: "frontend" },
+      { name: "Nextra", icon: "/tools/nextra.svg", group: "frontend" },
+      { name: "REST API", icon: "/tools/rest.svg", group: "backend" },
+      { name: "JWT", icon: "/tools/jwt.svg", group: "backend" },
+      { name: "OAuth", icon: "/tools/oauth.svg", group: "backend" },
+      { name: "Appwrite", icon: "/tools/appwrite.svg", group: "backend" },
+      { name: "MySQL", icon: "/tools/mysql.svg", group: "databases" },
+      { name: "Supabase", icon: "/tools/supabase.svg", group: "databases" },
+      { name: "MSSQL", icon: "/tools/mssql.svg", group: "databases" },
+      { name: "Firefox", icon: "/tools/firefox.svg", group: "security" },
+      { name: "Burp Suite", icon: "/tools/burpsuite.svg", group: "security" },
+      { name: "Linux", icon: "/tools/linux.svg", group: "devops" },
+      { name: "Docker", icon: "/tools/docker.svg", group: "devops" },
+      { name: "AWS", icon: "/tools/aws.svg", group: "devops" },
+      { name: "Azure", icon: "/tools/azure.svg", group: "devops" },
+      { name: "Git", icon: "/tools/git.svg", group: "devops" },
+      { name: "GitHub", icon: "/tools/github.svg", group: "devops" },
+      { name: "Vercel", icon: "/tools/vercel.svg", group: "devops" },
+      { name: "Cursor", icon: "/tools/cursor.svg", group: "ai" },
+      { name: "Claude", icon: "/tools/claude.svg", group: "ai" },
+      { name: "Codex", icon: "/tools/codex.svg", group: "ai" },
+      { name: "OpenAI API", icon: "/tools/openai.svg", group: "ai" },
+      { name: "Anthropic API", icon: "/tools/anthropic.svg", group: "ai" },
+      { name: "DeepSeek API", icon: "/tools/deepseek.svg", group: "ai" },
+      { name: "Grok API", icon: "/tools/grok.svg", group: "ai" },
+      { name: "Herdr", icon: "/tools/herdr.svg", group: "ai" },
+    ] satisfies ToolItem[],
+  },
+  projectsTitle: "Things I have built",
+  projects: [
+    {
+      title: "The Pensieve",
+      date: "2026",
+      status: "finished",
+      summary:
+        "A notes site I use while studying and working: cheatsheets, methodology, and longer writeups. Cyber Unbound is listed as a sponsor.",
+      tags: [
+        { name: "Nextra", color: "#ffffff" },
+        { name: "Writing", color: "#e5e5e5" },
+      ],
+      website: "https://thepensieve.in",
+      github: "https://github.com/Alpastx/ThePensieve",
+      cover: { from: "#1c1e28", to: "#101118", label: "Pensieve", image: "/oensieve.webp" },
+    },
+    {
+      title: "LinVAPT",
+      date: "2026",
+      status: "finished",
+      summary:
+        "A modular checker for RHEL and Rocky hosts you administer. It runs the scanners you point it at and reports what it finds.",
+      tags: [
+        { name: "Python", color: "#3776AB" },
+        { name: "Linux", color: "#FCC624" },
+      ],
+      github: "https://github.com/Alpastx/Linux-VAPT",
+      cover: { from: "#1c2420", to: "#101614", label: "LinVAPT", image: "/lincap.jpg" },
+    },
+    {
+      title: "DirStrike",
+      date: "April 2025",
+      status: "in progress",
+      summary: "A Go tool, still in progress, for listing paths on a site you are allowed to test.",
+      tags: [{ name: "Go", color: "#00ADD8" }],
+      github: "https://github.com/Alpastx/DirStrike",
+      cover: { from: "#241c1c", to: "#141010", label: "DirStrike", image: "/dirstrike.jpg" },
+    },
+    {
+      title: "Android lab setup",
+      date: "December 2025",
+      status: "finished",
+      summary: "An Arch script that stands up an Android testing lab: emulators and proxy tooling.",
+      tags: [
+        { name: "Linux", color: "#FCC624" },
+        { name: "Android", color: "#3DDC84" },
+      ],
+      github: "https://github.com/Alpastx/Android-PT-Setup",
+      cover: { from: "#1a2228", to: "#101418", label: "Android", image: "/android.jpg" },
+    },
+  ] satisfies Project[],
+  fieldTitle: "In the field",
+  field: [
+    {
+      title: "CVE-2026-89036",
+      date: "September 2026",
+      place: "Appwrite",
+      result:
+        "Published, rated High, sole credit. Authenticated users with function or site write access could reach code execution in the builds worker. Fixed in Appwrite 2.0.0.",
+      tags: [
+        { name: "CVE", color: "#f38ba8" },
+        { name: "Published", color: "#a6e3a1" },
+      ],
+      cover: { from: "#1c2428", to: "#101416", label: "Appwrite" },
+    },
+    {
+      title: "Published advisories",
+      date: "July — August 2026",
+      place: "GitHub",
+      result:
+        "Twenty-two published advisories across SnapOtter, AzuraCast, Lychee, Wekan, OpenEMR, Planka, and Scoold. Mostly access control and path handling. Unpublished drafts are not listed here.",
+      tags: [
+        { name: "GHSA", color: "#89b4fa" },
+        { name: "Published", color: "#a6e3a1" },
+      ],
+      cover: { from: "#1c1e28", to: "#101118", label: "Advisories" },
+    },
+    {
+      title: "RAIT-CTF 2026",
+      date: "February 2026",
+      place: "Navi Mumbai",
+      result:
+        "Won with Windows 9/11: Ishayu Potey, Nayanesh Gudla, and Aryan Parab. A 24-hour national final.",
+      tags: [
+        { name: "CTF", color: "#f9e2af" },
+        { name: "First", color: "#a6e3a1" },
+      ],
+      cover: { from: "#28241a", to: "#16140e", label: "RAIT" },
+    },
+    {
+      title: "ZERO ONE",
+      date: "September 2026",
+      place: "IIT Bombay",
+      result:
+        "Organized Ghost in the Ledger with ZERON. More than 350 teams registered, from 47 or more cities.",
+      tags: [
+        { name: "Organizer", color: "#89b4fa" },
+        { name: "CTF", color: "#f9e2af" },
+      ],
+      cover: { from: "#241e28", to: "#140f16", label: "ZERO ONE" },
+    },
+    {
+      title: "Ciphathon CTF7",
+      date: "March 2026",
+      place: "MIT-WPU, Pune",
+      result: "Finished second with Windows 9/11.",
+      tags: [
+        { name: "CTF", color: "#f9e2af" },
+        { name: "Second", color: "#89b4fa" },
+      ],
+      cover: { from: "#1a2228", to: "#101418", label: "Ciphathon" },
+    },
+    {
+      title: "CVE-2026-86089",
+      date: "September 2026",
+      place: "Apache NiFi",
+      result:
+        "Published with ZsZsec, rated Low. An authenticated user could see or move process groups beyond their rights. Fixed in Apache NiFi 2.12.0.",
+      tags: [
+        { name: "CVE", color: "#f38ba8" },
+        { name: "Published", color: "#a6e3a1" },
+      ],
+      cover: { from: "#1c2430", to: "#10131a", label: "NiFi" },
+    },
+    {
+      title: "Chakravyuha CTF",
+      date: "March 2025",
+      place: "Lokmanya Tilak College",
+      result: "Tied for fourth in the final, with Ayush Shukla.",
+      tags: [{ name: "CTF", color: "#f9e2af" }],
+      cover: { from: "#1c2420", to: "#101614", label: "Chakravyuha" },
+    },
+  ] satisfies FieldItem[],
+  record: {
+    title: "The record",
+    connected: true,
+    username: "Alpastx",
+    url: "https://github.com/Alpastx",
+    htb: {
+      rank: "Master",
+      level: 74,
+      levelXp: 1424,
+      levelGoal: 2742,
+      grade: 3,
+      yearXp: 69700,
+      weeklyAverage: 1742.5,
+      totalXp: 78720,
+      weeksActive: 40,
+      weekStart: "2025-10-27",
+      weeks: [
+        0, 0, 2920, 2790, 1425, 535, 195, 2655, 1665, 1920, 1545, 0, 3340, 4545, 725, 710, 2285, 1520, 0,
+        2940, 4720, 100, 0, 1000, 0, 15, 285, 0, 150, 90, 0, 480, 1280, 1745, 2090, 2825, 3570, 1140, 945,
+        3420, 3090, 8120, 40, 220, 1665, 120, 0, 0, 845, 30, 0, 0,
+      ],
+      events: [
+        {
+          name: "Cyber Apocalypse CTF 2025: Tales from Eldoria",
+          date: "21–26 Mar 2025",
+          detail: "Ranked 59th of 8,130 teams with 54,025 points.",
+        },
+        {
+          name: "AI vs Human CTF Challenge",
+          date: "14–16 Mar 2025",
+          detail: "Ranked 56th of 404 teams with 13,250 points.",
+        },
+      ],
+    },
+    volunteering: [
+      {
+        title: "Co-organiser",
+        org: "Our Tech Community",
+        dates: "Aug 2025 — Present",
+        meta: "Education",
+        mark: "OTC",
+        logo: "/otc-circular.png",
+        href: "https://ourtech.community/",
+        summary: "I help manage the WhatsApp community and host catchups sometimes.",
+      },
+      {
+        title: "Cybersecurity Domain Head",
+        org: "TechShala - VPT",
+        dates: "Aug 2023 — Jul 2024",
+        meta: "Science and Technology",
+        mark: "TS",
+        logo: "/logos/techshala.png",
+        summary:
+          "Planning and organizing cybersecurity events under TechShala, the technical student council of Vidyalankar Polytechnic.",
+        photos: [
+          { src: "/domainleader/1770198384739.jpg", alt: "Cybersecurity Domain Head plaque, academic year 2023–2024" },
+          { src: "/domainleader/1770198432384.jpg", alt: "Workshop session at Vidyalankar Polytechnic" },
+          { src: "/domainleader/1770198454281.jpg", alt: "Hands-on cybersecurity workshop" },
+          { src: "/domainleader/1770198477434.jpg", alt: "TryHackMe workshop" },
+          { src: "/domainleader/1770198575981.jpg", alt: "Solstice 21, a Cicada 3301-style event" },
+        ],
+      },
+      {
+        title: "Tech Fest Volunteer",
+        org: "TechShala - VPT",
+        dates: "1 month",
+        meta: "Science and Technology",
+        mark: "TS",
+        logo: "/logos/techshala.png",
+        summary:
+          "Helped plan, organize, and run Crack If You Can at TechShala, and designed the web exploitation CTF.",
+      },
+    ],
+    honors: [
+      {
+        title: "Ciphathon 2026 : 1st Runner Up",
+        dates: "Mar 2026",
+        meta: "MIT World Peace University, Pune",
+        mark: "2nd",
+        logo: "/logos/mit-wpu.png",
+        summary:
+          "got 1st runner up in the ctf without using AI, pure raw skills and knowledge :), loved the one nighters and night travel form mumbai to pune and 'backchodi' we did lol",
+        photos: [
+          { src: "/mitwp.jpg", alt: "Ciphathon 2026 2nd place certificate and runner-up trophy" },
+          { src: "/canvas/ciphathon-26.webp", alt: "Ciphathon 26 team on stage holding certificates and the runner-up trophy" },
+        ],
+      },
+      {
+        title: "RAIT-CTF 2026 Winner",
+        dates: "Feb 2026",
+        meta: "Ramrao Adik Institute of Technology",
+        mark: "1st",
+        logo: "/logos/raitcollege2.png",
+        summary: "Winner of RAIT-CTF 2026",
+        photos: [{ src: "/canvas/rait-ctf.webp", alt: "RAIT-CTF 2026 winner" }],
+      },
+      {
+        title: "TechSpardha Winner 2023",
+        dates: "Oct 2023",
+        meta: "Vidyalankar Institute of Technology, Mumbai",
+        mark: "TS",
+        logo: "/logos/techshala.png",
+        summary:
+          "Organised by TechShala at Vidyalankar Polytechnic. The project automated OWASP Top 10 findings in SAST and DAST modes.",
+        photos: [
+          { src: "/techspardha%20winner.jpg", alt: "TechSpardha 2023 trophy presentation" },
+          { src: "/techspardhawinner2.jpg", alt: "TechSpardha winner trophy" },
+        ],
+      },
+      {
+        title: "Cybersec Domain Leader 2023–2024",
+        dates: "Sep 2023",
+        meta: "Vidyalankar Institute of Technology, Mumbai",
+        mark: "TS",
+        logo: "/logos/techshala.png",
+        summary:
+          "Cybersecurity Domain Leader at TechShala (Vidyalankar Polytechnic) from 2023–2024. Planned and ran 11+ workshops on cybersecurity and software engineering, from complete beginners to people already comfortable with advanced concepts. The workshops covered encoding and encryption, hands-on practice on HTB and THM, and web hacking. Also created and organized Solstice 21, a CTF-style event inspired by Cicada 3301, with challenges for beginners and advanced participants.",
+        photos: [
+          { src: "/domainleader/1770198384739.jpg", alt: "Cybersecurity Domain Head plaque, academic year 2023–2024" },
+          { src: "/domainleader/1770198432384.jpg", alt: "Workshop session at Vidyalankar Polytechnic" },
+          { src: "/domainleader/1770198454281.jpg", alt: "Hands-on cybersecurity workshop" },
+          { src: "/domainleader/1770198477434.jpg", alt: "TryHackMe workshop" },
+          { src: "/domainleader/1770198575981.jpg", alt: "Solstice 21, a Cicada 3301-style event" },
+        ],
+      },
+      {
+        title: "Tech-talk Winner 2022",
+        dates: "May 2022",
+        meta: "Vidyalankar Institute of Technology, Mumbai",
+        mark: "TS",
+        logo: "/logos/techshala.png",
+        summary:
+          "Won the Tech-talk competition organised by TechShala at Vidyalankar Polytechnic. The talk was on robust and advanced obfuscation and its real-life use, at 17.",
+        photos: [{ src: "/techtalkwinner.jpg", alt: "Tech-talk 2022 winner certificate" }],
+      },
+    ],
+    ctfs: [
+      {
+        title: "Ciphathon CTF7",
+        dates: "Mar 2026",
+        meta: "MIT World Peace University, Pune",
+        mark: "2nd",
+        logo: "/logos/mit-wpu.png",
+        summary: "1st runner-up with Windows 9/11.",
+        photos: [
+          { src: "/mitwp.jpg", alt: "Ciphathon 2026 2nd place certificate and runner-up trophy" },
+          { src: "/canvas/ciphathon-26.webp", alt: "Ciphathon 26 team on stage holding certificates and the runner-up trophy" },
+        ],
+      },
+      {
+        title: "RAIT-CTF 2026",
+        dates: "Feb 2026",
+        meta: "Ramrao Adik Institute of Technology",
+        mark: "1st",
+        logo: "/logos/raitcollege2.png",
+        summary: "Winner with Windows 9/11.",
+        photos: [{ src: "/canvas/rait-ctf.webp", alt: "RAIT-CTF 2026 winner" }],
+      },
+      {
+        title: "Cyber Apocalypse CTF 2025: Tales from Eldoria",
+        dates: "21–26 Mar 2025",
+        meta: "Hack The Box",
+        mark: "HTB",
+        logo: "/logos/htb.svg",
+        summary: "Ranked 59th of 8,130 teams with 54,025 points.",
+      },
+      {
+        title: "AI vs Human CTF Challenge",
+        dates: "14–16 Mar 2025",
+        meta: "Hack The Box",
+        mark: "HTB",
+        logo: "/logos/htb.svg",
+        summary: "Ranked 56th of 404 teams with 13,250 points.",
+      },
+      {
+        title: "Chakravyuha CTF",
+        dates: "Mar 2025",
+        meta: "Lokmanya Tilak College of Engineering",
+        mark: "4th",
+        logo: "/logos/Logo-ltjss.png",
+        summary: "Tied for fourth in the final, with Ayush Shukla.",
+        photos: [{ src: "/chrukhya.jpg", alt: "Chakravyuha CTF workstation" }],
+      },
+    ],
+  },
+  certs: [
+    {
+      name: "Certified Penetration Testing Specialist",
+      code: "CPTS",
+      date: "Aug 2026",
+      badge: "/canvas/badge-cpts.webp",
+      issuer: "Hack The Box",
+    },
+    {
+      name: "Certified Junior Cybersecurity Associate",
+      code: "CJCA",
+      date: "Mar 2026",
+      badge: "/canvas/badge-cjca.webp",
+      issuer: "Hack The Box",
+    },
+    {
+      name: "Junior Penetration Tester",
+      code: "eJPT",
+      date: "Sep 2025",
+      badge: "/ejpt-certification.svg",
+      issuer: "INE",
+      href: "https://certs.ine.com/f9696d9e-1eec-429c-8392-8b8e8cc91fbc#acc.XWdOstau",
+    },
+    {
+      name: "Certified Cloud Associate",
+      code: "ICCA",
+      date: "Aug 2025",
+      badge: "/logos/icca.png",
+      issuer: "INE",
+      href: "https://certs.ine.com/05b651cc-48bf-4b2d-ba92-75229791ba92#acc.zmqNUgB7",
+    },
+  ],
+  collageTitle: "match my aesthetic, can you?",
+  collageHint: "Drag things around",
+  collage: [
+    {
+      kind: "photo",
+      src: "/canvas/alpesh-bsides.webp",
+      alt: "Alpesh at BSides Mumbai, giving two thumbs up, framed in a Windows Paint window",
+      cutout: true,
+      x: 9.8,
+      y: -2.8,
+      width: 17.8,
+      rotate: 7.1,
+      z: 4,
+      ratio: 1080 / 1350,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/alpesh-mirror.webp",
+      alt: "Mirror selfie of Alpesh in glasses and a conference lanyard",
+      cutout: true,
+      x: 72.6,
+      y: 31.1,
+      width: 11,
+      rotate: -2.5,
+      z: 0,
+      ratio: 1080 / 1350,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/ciphathon-26.webp",
+      alt: "Ciphathon 26 team on stage holding certificates and the runner-up trophy",
+      caption: "1st runnerup",
+      frame: "dark",
+      x: 24.8,
+      y: 2.2,
+      width: 14.4,
+      rotate: -17.4,
+      z: 5,
+      ratio: 1600 / 900,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/yc-startup-school.webp",
+      alt: "Alpesh giving two thumbs up at Y Combinator Startup School India in Bengaluru",
+      frame: "light",
+      caption: "YC ai Startup school, BLR",
+      x: 45.5,
+      y: 17.4,
+      width: 16.4,
+      rotate: 8.8,
+      z: 4,
+      ratio: 646 / 645,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/alpesh-cafe.webp",
+      alt: "Alpesh seated with arms crossed in a pixel-art cafe",
+      cutout: true,
+      x: 37.9,
+      y: -8.2,
+      width: 13,
+      rotate: -8,
+      z: 6,
+      ratio: 1080 / 1350,
+    },
+    {
+      kind: "sticker",
+      src: "/canvas/sticker-ab.webp",
+      alt: "",
+      x: 47.8,
+      y: 60.3,
+      width: 8,
+      rotate: 14,
+      z: 11,
+      ratio: 640 / 427,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/alpesh-desk.webp",
+      alt: "Overhead view of a desk with a laptop, a mouse, and a mirror selfie",
+      caption: "wework, BKC",
+      frame: "dark",
+      x: 63.4,
+      y: 14.2,
+      width: 11,
+      rotate: -3.5,
+      z: 5,
+      ratio: 619 / 1008,
+    },
+    {
+      kind: "sticker",
+      src: "/canvas/badge-cpts.webp",
+      alt: "HTB CPTS certification badge",
+      x: 56.7,
+      y: 0.2,
+      width: 8,
+      rotate: -12,
+      z: 11,
+      ratio: 461 / 428,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/cat-terminal.webp",
+      alt: "An orange cat in a headset sitting in front of a terminal and a laptop",
+      x: 31.4,
+      y: 64.9,
+      width: 17,
+      rotate: -3,
+      z: 6,
+      ratio: 1400 / 1050,
+    },
+    {
+      kind: "sticker",
+      src: "/canvas/badge-cjca.webp",
+      alt: "HTB CJCA certification badge",
+      x: 26.2,
+      y: 55.4,
+      width: 7,
+      rotate: 14,
+      z: 10,
+      ratio: 629 / 618,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/laptop-legion.webp",
+      alt: "Lid of a silver Lenovo Legion laptop with a glowing cyan logo",
+      cutout: true,
+      x: 10.1,
+      y: 52.1,
+      width: 17,
+      rotate: -6,
+      z: 2,
+      ratio: 1100 / 679,
+    },
+    {
+      kind: "sticker",
+      src: "/canvas/sticker-computer.webp",
+      alt: "",
+      x: 50.2,
+      y: -1,
+      width: 8.2,
+      rotate: -21.6,
+      z: 10,
+      ratio: 410 / 512,
+    },
+    {
+      kind: "photo",
+      src: "/canvas/rait-ctf.webp",
+      alt: "CTF team holding a RAIT-CTF first prize cheque",
+      caption: "Winners",
+      frame: "dark",
+      x: 73.6,
+      y: 53,
+      width: 20,
+      rotate: -20.6,
+      z: 3,
+      ratio: 1600 / 900,
+    },
+    {
+      kind: "sticker",
+      src: "/canvas/sticker-bug.webp",
+      alt: "",
+      x: 70.3,
+      y: 81.9,
+      width: 6,
+      rotate: -16,
+      z: 11,
+      ratio: 374 / 328,
+    },
+    {
+      kind: "sticker",
+      src: "/canvas/sticker-prism.webp",
+      alt: "",
+      x: 24.5,
+      y: 76.1,
+      width: 6,
+      rotate: 12,
+      z: 10,
+      ratio: 1,
+    },
+    {
+      kind: "sticker",
+      src: "/canvas/sticker-cat.webp",
+      alt: "",
+      x: 39.8,
+      y: 23.7,
+      width: 5.5,
+      rotate: 21,
+      z: 10,
+      ratio: 1,
+    },
+    {
+      kind: "note",
+      src: "/canvas/note-emilburzo.webp",
+      alt: "GitHub comment from emilburzo: Thank you for the valid report. I have requested a CVE for it.",
+      body: "Thank you for the valid report. I have requested a CVE for it.",
+      title: "emilburzo",
+      caption: "Jul 30",
+      mark: "/canvas/note-emilburzo-avatar.webp",
+      x: 26.8,
+      y: 31.4,
+      width: 17.8,
+      rotate: 1.1,
+      z: 8,
+      ratio: 1496 / 318,
+    },
+    {
+      kind: "note",
+      src: "/canvas/note-appwrite.webp",
+      alt: "Email from Appwrite Security: Hey Alpesh, thanks for reporting it. Closing this out. Appreciate the report.",
+      body: "Hey Alpesh, thanks for reporting it. Closing this out. Appreciate the report.",
+      title: "Appwrite Security",
+      caption: "to me",
+      mark: "/logos/appwrite.webp",
+      darken: true,
+      x: 73.1,
+      y: 7.1,
+      width: 20.4,
+      rotate: 16.4,
+      z: 1,
+      ratio: 1150 / 353,
+    },
+    {
+      kind: "note",
+      src: "/canvas/note-penpot.webp",
+      alt: "GitHub comment from a Penpot maintainer: Fix ready to review, target 2.18.0. Thanks for report.",
+      body: "Fix ready to review, target 2.18.0. Thanks for report.",
+      title: "Penpot maintainer",
+      caption: "Aug 26",
+      mark: "/logos/penpot.webp",
+      x: 49.5,
+      y: 69.4,
+      width: 22,
+      rotate: -8.5,
+      z: 8,
+      ratio: 1564 / 300,
+    },
+  ] satisfies CollageItem[],
+  contact: {
+    title: "Let's talk",
+    line: "Email is the reliable way to start. Research, a CTF, or work with Cyber Unbound.",
+    cta: "Email me",
+    href: "mailto:alpeshbhagwatkar45@gmail.com",
+  },
+  notesTitle: "Notes",
+  notes: [
+    {
+      slug: "appwrite-2-0-0",
+      title: "What changed in Appwrite 2.0.0",
+      date: "September 2026",
+      isoDate: "2026-09",
+      excerpt:
+        "CVE-2026-89036 is public. Authenticated write access could reach the builds worker. The fix shipped in 2.0.0.",
+      body: [
+        "This is the outcome, not a writeup of the bug.",
+        "Appwrite before 2.0.0 let an authenticated user with function or site write access reach code execution in the builds worker. I reported it. VulnCheck published it as CVE-2026-89036 and rated it High. I am the sole credit.",
+        "The fix is in Appwrite 2.0.0. The patch is public on the Appwrite repository.",
+        "Unpublished reports stay off this page until the vendor publishes them.",
+      ],
+    },
+  ] satisfies Note[],
+  nowPlaying: {
+    title: "bonfire",
+    artist: "wave to earth",
+    art: "/bonfire.webp",
+  },
+  soundSrc: "/bonfire.m4a",
+  soundStart: 152,
+};
+
+export const featuredProjects = site.projects.slice(0, 2);
+export const featuredField = site.field.slice(0, 4);
+
+export function noteBySlug(slug: string) {
+  return site.notes.find((note) => note.slug === slug);
+}
