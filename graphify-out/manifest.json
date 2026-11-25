@@ -18,14 +18,14 @@
     "semantic_hash": ""
   },
   "app/layout.tsx": {
-    "mtime": 1792861673.0211518,
-    "seen": 1792863180.8818479,
+    "mtime": 1794054403.5855556,
+    "seen": 1795519149.1377385,
     "ast_hash": "02112da831d081fa45227f7042829b1a",
     "semantic_hash": ""
   },
   "app/page.tsx": {
-    "mtime": 1792861673.0211518,
-    "seen": 1792863180.8818548,
+    "mtime": 1794054403.5855556,
+    "seen": 1795519149.1377456,
     "ast_hash": "f0c7cb2ec3d8e37695dbb75b24418e1b",
     "semantic_hash": ""
   },
@@ -126,8 +126,8 @@
     "semantic_hash": ""
   },
   "components/mark.tsx": {
-    "mtime": 1791646173.533416,
-    "seen": 1791646810.5624516,
+    "mtime": 1795523926.306457,
+    "seen": 1795624239.9158802,
     "ast_hash": "7f396b5c7d6872f59e78c1679f909151",
     "semantic_hash": ""
   },
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "components/research.tsx": {
-    "mtime": 1791618108.8479536,
-    "seen": 1791645473.7677186,
-    "ast_hash": "0ae7b8f5f8b997fae3cda18365fc38f7",
+    "mtime": 1795631343.339917,
+    "seen": 1795631352.0151296,
+    "ast_hash": "9cfbd146716c7a78a95b0369758bf255",
     "semantic_hash": ""
   },
   "components/resume-sheet.tsx": {
@@ -198,15 +198,15 @@
     "semantic_hash": ""
   },
   "components/ui/progressive-blur.tsx": {
-    "mtime": 1792861673.0211518,
-    "seen": 1792863180.881893,
+    "mtime": 1794054403.5855556,
+    "seen": 1795519149.1377866,
     "ast_hash": "7e25f1e251a650df9b650f0475db89f6",
     "semantic_hash": ""
   },
   "content/site.ts": {
-    "mtime": 1792871223.5179722,
-    "seen": 1792871234.3216455,
-    "ast_hash": "893f7e852b23dcad510246ca2c6f4f5d",
+    "mtime": 1795631328.7819514,
+    "seen": 1795631352.0151405,
+    "ast_hash": "b399986757b71f64a1749041c5e52176",
     "semantic_hash": ""
   },
   "eslint.config.mjs": {
@@ -945,6 +945,30 @@
     "mtime": 1792871221.4914298,
     "seen": 1792871234.3216956,
     "ast_hash": "0944c2dc7a23d56ffbcd15e27b9fa20c",
+    "semantic_hash": ""
+  },
+  "public/logos/floci.png": {
+    "mtime": 1795519081.7038536,
+    "seen": 1795519149.137836,
+    "ast_hash": "1c908cb29023bb6c7d0ab4bc08ce3fb8",
+    "semantic_hash": ""
+  },
+  "public/logos/gotenberg.png": {
+    "mtime": 1795519081.7118535,
+    "seen": 1795519149.1378372,
+    "ast_hash": "6b39d91b3a4fed25261b57d1a1a53e00",
+    "semantic_hash": ""
+  },
+  "public/logos/portainer.png": {
+    "mtime": 1795519081.711327,
+    "seen": 1795519149.1378558,
+    "ast_hash": "ab9f0776371586ca52d2f513c0ea5be4",
+    "semantic_hash": ""
+  },
+  "public/logos/trilium.png": {
+    "mtime": 1795519081.7098083,
+    "seen": 1795519149.1378617,
+    "ast_hash": "0ff5358bd2537371af14793820c11011",
     "semantic_hash": ""
   }
 }

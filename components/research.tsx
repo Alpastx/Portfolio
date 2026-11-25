@@ -6,14 +6,35 @@ import { SectionHeader } from "@/components/section-header";
 import type { ResearchGroup, ResearchItem } from "@/content/site";
 import { site } from "@/content/site";
 
+function isCve(item: ResearchItem) {
+  return item.title.startsWith("CVE-");
+}
+
 function ItemTitle({ item }: { item: ResearchItem }) {
+  const cve = isCve(item);
+  const className = cve
+    ? "font-display text-[1.25rem] leading-tight tracking-[-0.01em] italic"
+    : "font-medium";
+  const label = cve ? (
+    <>
+      {item.detail}
+      <span className="mx-2 text-muted-foreground/50" aria-hidden>
+        /
+      </span>
+      <span className="sr-only"> </span>
+      {item.title}
+    </>
+  ) : (
+    item.title
+  );
+
   if (!item.href) {
-    return <p className="font-medium">{item.title}</p>;
+    return <p className={className}>{label}</p>;
   }
 
   return (
-    <a href={item.href} className="font-medium hover:underline" target="_blank" rel="noopener noreferrer">
-      {item.title}
+    <a href={item.href} className={`${className} hover:underline`} target="_blank" rel="noopener noreferrer">
+      {label}
     </a>
   );
 }
@@ -37,16 +58,74 @@ function StarCount({ count }: { count: number }) {
   );
 }
 
+const advisoryCounts: Record<string, string> = {
+  One: "1",
+  Two: "2",
+  Three: "3",
+  Four: "4",
+  Five: "5",
+  Six: "6",
+  Seven: "7",
+  Eight: "8",
+  Nine: "9",
+};
+
+function advisoryCount(detail: string) {
+  const [word, ...rest] = detail.split(" ");
+  const digit = advisoryCounts[word];
+  return digit ? `${digit} ${rest.join(" ")}` : detail;
+}
+
 function RowMeta({ item }: { item: ResearchItem }) {
   if (item.rating) {
     return (
-      <span className={`font-mono text-[12px] ${item.rating === "High" ? "text-critical" : "text-muted-foreground"}`}>
+      <span className={`font-mono text-[12px] ${item.rating === "High" || item.rating === "Critical" ? "text-critical" : "text-muted-foreground"}`}>
         {item.score ? `${item.score} ${item.rating}` : item.rating}
       </span>
     );
   }
 
   return <span className="font-mono text-[12px] text-muted-foreground">{item.dates}</span>;
+}
+
+function cveCount(item: ResearchItem) {
+  const entries = site.research.flatMap((group) => group.entries ?? []);
+  return entries.filter((entry) => entry.detail === item.title && entry.cve).length;
+}
+
+function Slash() {
+  return (
+    <>
+      <span className="mx-1.5 text-muted-foreground/50" aria-hidden>
+        /
+      </span>
+      <span className="sr-only"> </span>
+    </>
+  );
+}
+
+function AdvisoryCount({ item }: { item: ResearchItem }) {
+  const severe = item.rating === "High" || item.rating === "Critical";
+  const cves = cveCount(item);
+
+  return (
+    <p className="font-mono text-[12px]">
+      <span className={severe ? "text-critical" : "text-muted-foreground"}>
+        {item.score ? `${item.score} ` : ""}
+        {item.rating?.toUpperCase()}
+      </span>
+      <Slash />
+      <span className="text-muted-foreground">{advisoryCount(item.detail)}</span>
+      {cves > 0 ? (
+        <>
+          <Slash />
+          <span className="text-foreground">
+            {cves} {cves === 1 ? "CVE" : "CVEs"}
+          </span>
+        </>
+      ) : null}
+    </p>
+  );
 }
 
 function ResearchRow({ item, stacked }: { item: ResearchItem; stacked?: boolean }) {
@@ -63,12 +142,25 @@ function ResearchRow({ item, stacked }: { item: ResearchItem; stacked?: boolean 
             {star}
           </span>
         </div>
-        {stacked ? (
-          <p>
-            <RowMeta item={item} />
+        {stacked ? <AdvisoryCount item={item} /> : null}
+        {isCve(item) || stacked ? null : (
+          <p className="text-[13.5px] text-muted-foreground">
+            {item.detail}
+            {item.cve ? (
+              <>
+                <Slash />
+                <a
+                  href={`https://www.cve.org/CVERecord?id=${item.cve}`}
+                  className="font-mono text-[12px] text-foreground hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.cve}
+                </a>
+              </>
+            ) : null}
           </p>
-        ) : null}
-        <p className="text-[13.5px] text-muted-foreground">{item.detail}</p>
+        )}
         {item.note ? <p className="mt-1 text-[14px] leading-relaxed text-muted-foreground">{item.note}</p> : null}
       </div>
     </article>
@@ -77,19 +169,18 @@ function ResearchRow({ item, stacked }: { item: ResearchItem; stacked?: boolean 
 
 const severityRank: Record<string, number> = { Critical: 0, High: 1, Medium: 2, Low: 3 };
 
-function byStarsThenSeverity(items: ResearchItem[]) {
+function bySeverityThenStars(items: ResearchItem[]) {
   return [...items].sort((a, b) => {
-    const stars = (b.stars ?? 0) - (a.stars ?? 0);
-    if (stars !== 0) return stars;
     const severity = (severityRank[a.rating ?? ""] ?? 4) - (severityRank[b.rating ?? ""] ?? 4);
     if (severity !== 0) return severity;
+    const stars = (b.stars ?? 0) - (a.stars ?? 0);
+    if (stars !== 0) return stars;
     return Number(b.score ?? 0) - Number(a.score ?? 0);
   });
 }
 
 function rankedItems(group: ResearchGroup) {
-  if (group.layout !== "cards") return group.items;
-  return [...group.items].sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0));
+  return bySeverityThenStars(group.items);
 }
 
 export function ResearchList({ cardLimit, start = 0 }: { cardLimit?: number; start?: number }) {
@@ -97,11 +188,11 @@ export function ResearchList({ cardLimit, start = 0 }: { cardLimit?: number; sta
     { group: ResearchGroup; compact: boolean; visible: ResearchItem[]; hidden: number; first: number }[]
   >((acc, group) => {
     const compact = group.layout === "cards" && cardLimit !== undefined;
-    const ranked = !compact && group.entries ? byStarsThenSeverity(group.entries) : rankedItems(group);
+    const ranked = !compact && group.entries ? bySeverityThenStars(group.entries) : rankedItems(group);
     const visible = compact ? ranked.slice(0, cardLimit) : ranked;
     const hidden = ranked.length - visible.length;
     const prev = acc.at(-1);
-    const first = prev ? prev.first + (prev.group.title ? 1 : 0) + prev.visible.length + (prev.hidden > 0 ? 1 : 0) : 0;
+    const first = prev ? prev.first + (prev.group.title ? 1 : 0) + prev.visible.length : 0;
     acc.push({ group, compact, visible, hidden, first });
     return acc;
   }, []);
@@ -115,7 +206,18 @@ export function ResearchList({ cardLimit, start = 0 }: { cardLimit?: number; sta
         return (
           <div key={group.title} className="flex flex-col gap-y-4">
             <Reveal delay={at(first)}>
-              <h3 className="font-display text-lg tracking-tight text-muted-foreground italic">{group.title}</h3>
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="font-display text-lg tracking-tight text-muted-foreground italic">{group.title}</h3>
+                {hidden > 0 ? (
+                  <Link
+                    href="/research"
+                    className="inline-flex shrink-0 items-center gap-1 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    +{hidden} more
+                    <ArrowUpRight className="size-3.5" strokeWidth={1.75} aria-hidden />
+                  </Link>
+                ) : null}
+              </div>
             </Reveal>
             <div className={compact ? "grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2" : "flex flex-col gap-y-5"}>
               {visible.map((item, index) => (
@@ -124,17 +226,6 @@ export function ResearchList({ cardLimit, start = 0 }: { cardLimit?: number; sta
                 </Reveal>
               ))}
             </div>
-            {hidden > 0 ? (
-              <Reveal delay={at(offset + visible.length)}>
-                <Link
-                  href="/research"
-                  className="inline-flex w-fit items-center gap-1 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {hidden} more
-                  <ArrowUpRight className="size-3.5" strokeWidth={1.75} aria-hidden />
-                </Link>
-              </Reveal>
-            ) : null}
           </div>
         );
       })}

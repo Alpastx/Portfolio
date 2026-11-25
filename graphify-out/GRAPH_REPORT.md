@@ -1,17 +1,17 @@
-# Graph Report - final-porto  (2026-10-25)
+# Graph Report - final-porto  (2026-11-25)
 
 ## Corpus Check
-- 56 files · ~353,055 words
+- 56 files · ~363,686 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 3 file(s) not represented in the graph (top: (none) 1, .ttf 1, .css 1)
 
 ## Summary
-- 317 nodes · 674 edges · 18 communities (15 shown, 3 thin omitted)
+- 322 nodes · 686 edges · 16 communities (13 shown, 3 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `efb8f0ed`
+- Built from commit: `de54dc47`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,18 +20,16 @@
 - dock.tsx
 - package.json
 - site.ts
-- collage-editor.tsx
+- collage.tsx
 - Alpesh Bhagwatkar
-- next
+- PageFrame
 - compilerOptions
-- layout.tsx
-- contributions-graph.tsx
+- next
+- record.tsx
 - be-ui-expanable-action-bar.tsx
-- opengraph-image.tsx
 - README.md
 - AGENTS.md
 - postcss.config.mjs
-- htb-record.tsx
 - research.tsx
 
 ## God Nodes (most connected - your core abstractions)
@@ -53,95 +51,87 @@
   app/blog/page.tsx → components/reveal.tsx
 - `RootLayout()` --calls--> `SiteShell()`  [EXTRACTED]
   app/layout.tsx → components/site-shell.tsx
+- `HomePage()` --calls--> `Contributions()`  [EXTRACTED]
+  app/page.tsx → components/contributions.tsx
 - `HomePage()` --calls--> `PageFrame()`  [EXTRACTED]
   app/page.tsx → components/page-frame.tsx
-- `HomePage()` --calls--> `ProjectCard()`  [EXTRACTED]
-  app/page.tsx → components/project-card.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (18 total, 3 thin omitted)
+## Communities (16 total, 3 thin omitted)
 
 ### Community 0 - "Reveal"
 Cohesion: 0.16
-Nodes (27): HomePage(), About(), BoardItem(), Collage(), lift, subscribeDesktop(), subscribePointer(), useDesktopBoard() (+19 more)
+Nodes (28): HomePage(), metadata, ProjectsPage(), About(), actionClass, Mark(), Segments(), Chip() (+20 more)
 
 ### Community 1 - "dock.tsx"
-Cohesion: 0.12
-Nodes (16): metadata, ResumePage(), Dock(), ISLAND_EASE, NowPlaying(), GithubIcon(), HtbIcon(), IconProps (+8 more)
+Cohesion: 0.13
+Nodes (15): metadata, ResumePage(), Dock(), ISLAND_EASE, NowPlaying(), GithubIcon(), HtbIcon(), IconProps (+7 more)
 
 ### Community 2 - "package.json"
 Cohesion: 0.05
 Nodes (37): eslintConfig, dependencies, clsx, lenis, lucide-react, motion, next, react (+29 more)
 
 ### Community 3 - "site.ts"
-Cohesion: 0.12
-Nodes (22): actionClass, Mark(), Segments(), Chip(), ChipRow(), ToolChip(), toolIcon(), Cover() (+14 more)
+Cohesion: 0.15
+Nodes (11): Cover(), FieldCard(), Education, Experience, featuredField, featuredProjects, FieldItem, Note (+3 more)
 
-### Community 4 - "collage-editor.tsx"
-Cohesion: 0.20
-Nodes (14): CollageEditor(), label(), Layout, Mode, Placement, toLayout(), boardClass, Card() (+6 more)
+### Community 4 - "collage.tsx"
+Cohesion: 0.13
+Nodes (22): BoardItem(), CollageEditor(), label(), Layout, Mode, Placement, toLayout(), boardClass (+14 more)
 
 ### Community 5 - "Alpesh Bhagwatkar"
 Cohesion: 0.09
 Nodes (21): 1. He is COO of Cyber Unbound, 2. Vulnerability research (CVEs + GitHub advisories), 3. He is a regular OTC CatchUp contributor, Alpesh Bhagwatkar, Certifications, CTF record, Education and campus work, How to use this (+13 more)
 
-### Community 6 - "next"
-Cohesion: 0.18
-Nodes (16): BlogPage(), metadata, generateMetadata(), NotePage(), Error(), NotFound(), metadata, ProjectsPage() (+8 more)
+### Community 6 - "PageFrame"
+Cohesion: 0.24
+Nodes (11): BlogPage(), metadata, generateMetadata(), NotePage(), Error(), NotFound(), metadata, ResearchPage() (+3 more)
 
 ### Community 7 - "compilerOptions"
 Cohesion: 0.11
 Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+10 more)
 
-### Community 8 - "layout.tsx"
-Cohesion: 0.12
-Nodes (19): figtree, instrument, jetbrains, metadata, RootLayout(), viewport, robots(), sitemap() (+11 more)
+### Community 8 - "next"
+Cohesion: 0.07
+Nodes (25): Entry, fields, figtree, instrument, jetbrains, metadata, RootLayout(), viewport (+17 more)
 
-### Community 9 - "contributions-graph.tsx"
-Cohesion: 0.26
-Nodes (11): buildWeeks(), ContributionDay, contributionLabel(), ContributionsGraph(), dayFormat, monthLabels(), MONTHS, rangeFormat (+3 more)
+### Community 9 - "record.tsx"
+Cohesion: 0.11
+Nodes (26): Contributions(), buildWeeks(), ContributionDay, contributionLabel(), ContributionsGraph(), dayFormat, monthLabels(), MONTHS (+18 more)
 
 ### Community 10 - "be-ui-expanable-action-bar.tsx"
-Cohesion: 0.15
-Nodes (15): cn(), ExpandableActionBar(), ExpandableActionBarClassNames, ExpandableActionBarProps, ExpandableActionBarSize, ICON_SIZE_CLASS, ITEM_SIZE_CLASS, ITEM_TRANSITION (+7 more)
-
-### Community 11 - "opengraph-image.tsx"
-Cohesion: 0.18
-Nodes (5): Entry, fields, alt, contentType, size
+Cohesion: 0.14
+Nodes (16): cn(), ExpandableActionBar(), ExpandableActionBarClassNames, ExpandableActionBarItem, ExpandableActionBarProps, ExpandableActionBarSize, ICON_SIZE_CLASS, ITEM_SIZE_CLASS (+8 more)
 
 ### Community 12 - "README.md"
 Cohesion: 0.50
 Nodes (3): Deploy on Vercel, Getting Started, Learn More
 
-### Community 16 - "htb-record.tsx"
-Cohesion: 0.29
-Nodes (9): buildWeeks(), countFormat, CredentialList(), HTB_FILLS, HtbRecord(), MONTHS, utc(), weekFormat (+1 more)
-
 ### Community 17 - "research.tsx"
-Cohesion: 0.27
-Nodes (11): byStarsThenSeverity(), formatStars(), ItemTitle(), rankedItems(), ResearchList(), ResearchRow(), RowMeta(), severityRank (+3 more)
+Cohesion: 0.21
+Nodes (16): advisoryCount(), advisoryCounts, bySeverityThenStars(), cveCount(), formatStars(), isCve(), ItemTitle(), rankedItems() (+8 more)
 
 ## Knowledge Gaps
 - **7 isolated node(s):** `react-dom`, `@tailwindcss/postcss`, `@types/node`, `@types/react`, `@types/react-dom` (+2 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 140 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 141 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `next` to `Reveal`, `dock.tsx`, `package.json`, `site.ts`, `collage-editor.tsx`, `layout.tsx`, `be-ui-expanable-action-bar.tsx`, `opengraph-image.tsx`, `research.tsx`?**
-  _High betweenness centrality (0.168) - this node is a cross-community bridge._
+- **Why does `next` connect `next` to `Reveal`, `dock.tsx`, `package.json`, `site.ts`, `collage.tsx`, `PageFrame`, `record.tsx`, `be-ui-expanable-action-bar.tsx`, `research.tsx`?**
+  _High betweenness centrality (0.169) - this node is a cross-community bridge._
 - **What connects `react-dom`, `@tailwindcss/postcss`, `@types/node` to the rest of the system?**
   _7 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dock.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.11965811965811966 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `layout.tsx` to `Reveal`, `dock.tsx`, `package.json`, `collage-editor.tsx`, `next`, `contributions-graph.tsx`, `be-ui-expanable-action-bar.tsx`, `htb-record.tsx`?**
-  _High betweenness centrality (0.112) - this node is a cross-community bridge._
+  _Cohesion score 0.12615384615384614 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `collage.tsx` to `Reveal`, `dock.tsx`, `package.json`, `PageFrame`, `next`, `record.tsx`, `be-ui-expanable-action-bar.tsx`?**
+  _High betweenness centrality (0.109) - this node is a cross-community bridge._
 - **Should `package.json` be split into smaller, more focused modules?**
   _Cohesion score 0.05263157894736842 - nodes in this community are weakly interconnected._
-- **Why does `site` connect `Reveal` to `dock.tsx`, `site.ts`, `next`, `layout.tsx`, `opengraph-image.tsx`, `htb-record.tsx`, `research.tsx`?**
-  _High betweenness centrality (0.051) - this node is a cross-community bridge._
-- **Should `site.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.11954022988505747 - nodes in this community are weakly interconnected._
+- **Why does `site` connect `Reveal` to `dock.tsx`, `site.ts`, `collage.tsx`, `PageFrame`, `next`, `record.tsx`, `research.tsx`?**
+  _High betweenness centrality (0.052) - this node is a cross-community bridge._
+- **Should `collage.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.13105413105413105 - nodes in this community are weakly interconnected._
